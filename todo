@@ -1,0 +1,6 @@
+Shortest path between 2 bus stops
+Searching for a bus stop by full name or by the first few characters in the name
+Searching for all trips with a given arrival time, returning full details of all trips matching the criteria (zero, one or more), sorted by trip id
+Provide front interface enabling selection between the above features or an option to exit the programme, and enabling required user input.
+Design Document
+error checking
