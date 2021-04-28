@@ -160,9 +160,16 @@ public class EdgeWeightedDigraph{
             if(transferType == 0) {
                 edge = new DirectedEdge(fromId, toId, DEFAULT_WEIGHT);
             }
-            else if(transferType==2){
-                minTransferTime = transfersScanner.nextInt();
-                double weight = ((double)minTransferTime)/100;
+            else if(transferType == 2){
+                double weight;
+                if(transfersScanner.hasNextInt()) {
+                    minTransferTime = transfersScanner.nextInt();
+                    weight = ((double)minTransferTime)/100;
+                }
+                else
+                {
+                    weight = DEFAULT_WEIGHT;
+                }
                 edge = new DirectedEdge(fromId, toId, weight);
             }
             addEdge(edge);

@@ -1,23 +1,25 @@
 import java.util.Scanner;
 
 public class BusApp {
-
-	public static void main(String[] args) 
+	static EdgeWeightedDigraph graph;
+	static Dijkstra dijkstra;
+	public static void main(String[] args)
 	{
+		graph = new EdgeWeightedDigraph();
 		MenuScreen();
 		
 		
 		
 	}
 	
-	private static void MenuScreen() 
+	private static void MenuScreen()
 	{
 		System.out.println("Welcome to the Vancouver bus app! Please type: \n 1 - To find the shortest path between two bus stops \n 2 - To search for a bus stop by name \n 3 - To search for all trips with a given arrival time \n 4 - To quit the application");
 		String input;
 		boolean chosen;
+		Scanner sc = new Scanner(System.in);
 		do 
 		{
-			Scanner sc = new Scanner(System.in);
 			input = sc.next();
 			try 
 			{
@@ -43,7 +45,16 @@ public class BusApp {
 		switch(input) 
 		{
 		case "1":
+			//sc.useDelimiter(" ");
 			System.out.println("You selected the shortest path finder" );
+			System.out.println("Please enter your starting and ending bus stop ids, separated by a space ");
+			int firstId = sc.nextInt();
+			int secondId = sc.nextInt();
+			int firstStopId = graph.findVertexById(firstId);
+			int secondStopId = graph.findVertexById(secondId);
+			dijkstra = new Dijkstra(graph, firstStopId);
+			double distance = dijkstra.getDistTo(secondStopId);
+			System.out.println(String.format("Shortest path between stop id %d and stop id %d is %f", firstId, secondId, distance));
 			break;
 		case "2":
 			System.out.println("You selected the bus stop finder" );
