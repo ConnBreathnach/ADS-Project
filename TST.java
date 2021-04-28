@@ -92,7 +92,7 @@ class TST{
 	}
 	private String search (TSTNode r, char[] stop, int position) {
 		if (r == null) {
-			return "0";
+			return null;
 		}
 		if (stop[position] < r.data) {
 			return search(r.left, stop, position);
@@ -106,35 +106,4 @@ class TST{
 		return "lol";
 		
 	}
-	public String toString()
-    {
-        al = new ArrayList<String>();
-        traverse(root, "");
-        return "\nTernary Search Tree : "+ al;
-    }
-    /** function to traverse tree **/
-    private void traverse(TSTNode r, String str)
-    {
-        if (r != null)
-        {
-            traverse(r.left, str);
- 
-            str = str + r.data;
-            if (r.isWord)
-                al.add(str);
- 
-            traverse(r.middle, str);
-            str = str.substring(0, str.length() - 1);
- 
-            traverse(r.right, str);
-        }
-    }
-	
-	public static void main(String[] args) throws FileNotFoundException {
-		TST lol = new TST();
-		lol.insert();
-		//System.out.print(lol.toString());
-		System.out.print(lol.search("a"));
-	}
 }
-
