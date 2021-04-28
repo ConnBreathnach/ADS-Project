@@ -1,24 +1,30 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
-
+class TSTNode {
+	public TSTNode left;
+	public TSTNode right;
+	public TSTNode middle;
+	public char data;
+	public boolean isWord;
+	public TSTNode (char data) {
+		this.data = data;
+		this.left = null;
+		this.right = null;
+		this.isWord = false;
+		this.middle = null;
+	}
+	public TSTNode () {
+	}
+}
 class TST{
 	private TSTNode root;
-	private class TSTNode {
-		public TSTNode left;
-		public TSTNode right;
-		public TSTNode middle;
-		public char data;
-		public boolean isWord;
-		public TSTNode (char data) {
-			this.data = data;
-			this.left = null;
-			this.right = null;
-			this.isWord = false;
-		}
+	private ArrayList<String> al;
+	public TST () {
+		root = new TSTNode();
 	}
-	public TST () throws FileNotFoundException {
-		root = null;
+	public void insert () throws FileNotFoundException {
 		Scanner fileName = new Scanner (new File("C:\\Users\\Melis\\OneDrive\\Dokumente\\programming Year 2\\TST\\src\\stops.txt"));
 		while (fileName.hasNextLine()) {
 			String currentLine = fileName.nextLine();
@@ -33,14 +39,17 @@ class TST{
 		if (r == null) {
             r = new TSTNode(stop[position]);
 		}
-        if (stop[position] < r.data)
+        if (stop[position] < r.data) {
             r.left = insert(r.left, stop, position);
-        else if (stop[position] > r.data)
+        }
+        else if (stop[position] > r.data) {
             r.right = insert(r.right, stop, position);
+        }
         else
         {
-            if (position + 1 < stop.length)
-                r.middle = insert(r.middle, stop, position + 1);
+            if (position + 1 < stop.length) {
+            	r.middle = insert(r.middle, stop, position + 1);
+            }
             else
                 r.isWord = true;
         }
@@ -76,6 +85,9 @@ class TST{
 		}	
 		
 	public String search (String stop) {
+		if (stop == "") {
+			return "emtpy string";
+		}
 		return search (root, stop.toCharArray(), 0);
 	}
 	private String search (TSTNode r, char[] stop, int position) {
@@ -88,15 +100,41 @@ class TST{
 		if (stop[position] > r.data) {
 			return search(r.right, stop, position);
 		}
-		if (position < stop.length - 1) return search(r.middle, stop, position + 1);
-        return r.toString();
+		if (position < stop.length) {
+			return r.data + search(r.middle, stop, position +1);
+		}
+		return "lol";
 		
 	}
-	public static void main (String[] args) throws FileNotFoundException {
-			TST lol = new TST();
-			System.out.print(lol.search("HASTINGS ST FS HOLDOM AVE- WB"));
-			
-		}
+	public String toString()
+    {
+        al = new ArrayList<String>();
+        traverse(root, "");
+        return "\nTernary Search Tree : "+ al;
+    }
+    /** function to traverse tree **/
+    private void traverse(TSTNode r, String str)
+    {
+        if (r != null)
+        {
+            traverse(r.left, str);
+ 
+            str = str + r.data;
+            if (r.isWord)
+                al.add(str);
+ 
+            traverse(r.middle, str);
+            str = str.substring(0, str.length() - 1);
+ 
+            traverse(r.right, str);
+        }
+    }
 	
+	public static void main(String[] args) throws FileNotFoundException {
+		TST lol = new TST();
+		lol.insert();
+		//System.out.print(lol.toString());
+		System.out.print(lol.search("a"));
+	}
 }
 
