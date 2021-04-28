@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
 class TSTNode {
 	public TSTNode left;
@@ -20,12 +19,11 @@ class TSTNode {
 }
 class TST{
 	private TSTNode root;
-	private ArrayList<String> al;
 	public TST () {
 		root = new TSTNode();
 	}
-	public void insert () throws FileNotFoundException {
-		Scanner fileName = new Scanner (new File("C:\\Users\\Melis\\OneDrive\\Dokumente\\programming Year 2\\TST\\src\\stops.txt"));
+	public void insert (String nameOfFile) throws FileNotFoundException {
+		Scanner fileName = new Scanner (new File("nameOfFile"));
 		while (fileName.hasNextLine()) {
 			String currentLine = fileName.nextLine();
 			String[] parts = currentLine.split(",");
@@ -58,27 +56,27 @@ class TST{
 	
 	private	String formatString(String currentStop) {
 			if (currentStop.startsWith("WB")) {
-				currentStop = currentStop.replaceFirst("WB", "");
+				currentStop = currentStop.replaceFirst("WB ", "");
 				currentStop = currentStop.concat(" WB");
 				return currentStop;
 			}
 			if (currentStop.startsWith("NB")) {
-				currentStop = currentStop.replaceFirst("NB", "");
+				currentStop = currentStop.replaceFirst("NB ", "");
 				currentStop = currentStop.concat(" NB");
 				return currentStop;
 			} 
-			if (currentStop.startsWith("SB")) {
+			if (currentStop.startsWith("SB ")) {
 				currentStop = currentStop.replaceFirst("SB", "");
 				currentStop = currentStop.concat(" SB");
 				return currentStop;
 			}
-			if (currentStop.startsWith("EB")) {
+			if (currentStop.startsWith("EB ")) {
 				currentStop = currentStop.replaceFirst("EB", "");
 				currentStop = currentStop.concat(" EB");
 				return currentStop;
 			}
 			if (currentStop.startsWith("Flagstop")) {
-				currentStop = currentStop.replaceFirst("Flagstop", "");
+				currentStop = currentStop.replaceFirst("Flagstop ", "");
 				currentStop = currentStop.concat(" Flagstop");
 			}
 			return currentStop;
@@ -91,19 +89,33 @@ class TST{
 		return search (root, stop.toCharArray(), 0);
 	}
 	private String search (TSTNode r, char[] stop, int position) {
-		if (r == null) {
-			return null;
+		if (r == null) return "0";
+        if (stop[position] < r.data) return search(r.left, stop, position);
+        if (stop[position] > r.data) return search(r.right, stop, position);
+        if (position == stop.length - 1) {
+        	if (r.isWord)
+        	return "1";
+        	else return searchEnding(r, String.valueOf(stop));
+        }
+        return search(r.middle, stop, position + 1);
+	}
+	private String searchEnding (TSTNode r, String possibleEnd) {
+		if (r != null) {
+			if (r.isWord) {
+				System.out.println(possibleEnd);
+			}
+			if (r.left != null) {
+				searchEnding(r.left, possibleEnd);
+			}
+			if (r.right != null) {
+				searchEnding(r.right, possibleEnd);
+			}
+			if (r.middle != null) {
+				possibleEnd = possibleEnd + r.middle.data;
+				return searchEnding(r.middle, (possibleEnd));
+			}
 		}
-		if (stop[position] < r.data) {
-			return search(r.left, stop, position);
-		}
-		if (stop[position] > r.data) {
-			return search(r.right, stop, position);
-		}
-		if (position < stop.length) {
-			return r.data + search(r.middle, stop, position +1);
-		}
-		return "lol";
 		
+		return "";
 	}
 }
