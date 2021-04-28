@@ -29,9 +29,9 @@ import java.util.Scanner;
 		{
 			System.out.print("Do not start your desired arrival time with '0'.");
 		}
-		if(inputTime.compareTo(max)==1) 
+		if((inputTime.compareTo(max)==1)||(inputArrivalTime.charAt(0)=='-')) 
 		{
-			System.out.print("Invalid arrival time has been entered.");
+			System.out.print("Invalid arrival time has been entered.'23:59:59' is the maximum time input allowed. Please enter your desired arrival time in hh:mm:ss format");
 		}
 		
 		String input = " "+inputArrivalTime;//allow for space before times in the txt file
