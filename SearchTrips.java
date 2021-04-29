@@ -10,13 +10,11 @@ import java.util.Scanner;
 
  public class SearchTrips {
 	
-	
 	static  ArrayList<Trip> search(String inputArrivalTime) throws FileNotFoundException, Exception, ParseException
 	{
 		//read in stop_times.txt file
 		File stopTimes = new File ("stop_times.txt");
 		Scanner scStopTimes = new Scanner (stopTimes);
-		
 		
 		DateFormat f = new SimpleDateFormat("HH:mm:ss");
 		Date max = f.parse("23:59:59"); //max time allowed
@@ -45,10 +43,7 @@ import java.util.Scanner;
 			Trip t = new Trip();
 			String line = scStopTimes.nextLine();
 			String[] array = line.split(",");
-			
-			Date arrival = f.parse(array[1]);
 	
-			
 			 if(array[1].equals(input)==true)
 				{
 					t.id(Integer.parseInt(array[0]));
@@ -88,7 +83,6 @@ import java.util.Scanner;
 		
 		System.out.println();
 	}
-	 
 
  }*/
  }
