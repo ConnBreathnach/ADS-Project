@@ -1,12 +1,16 @@
+import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BusApp {
 	static EdgeWeightedDigraph graph;
 	static Dijkstra dijkstra;
+	static TST tree;
 	public static void main(String[] args)
 	{
 		graph = new EdgeWeightedDigraph();
+		tree = new TST();
+		tree.insert();
 		MenuScreen();
 		
 		
@@ -19,6 +23,7 @@ public class BusApp {
 		String input;
 		boolean chosen;
 		Scanner sc = new Scanner(System.in);
+		sc.useDelimiter("\\n|\\r");
 		do 
 		{
 			input = sc.next();
@@ -46,7 +51,6 @@ public class BusApp {
 		switch(input) 
 		{
 		case "1":
-			//sc.useDelimiter(" ");
 			System.out.println("You selected the shortest path finder" );
 			System.out.println("Please enter your starting and ending bus stop ids, separated by a space ");
 			try {
@@ -69,7 +73,16 @@ public class BusApp {
 			}
 		case "2":
 			System.out.println("You selected the bus stop finder" );
-			break;
+			System.out.println("Please enter a bus stop by name" );
+			try{
+				String stopName = sc.next();
+				System.out.println(tree.search(stopName));
+				break;
+			}
+			catch(InputMismatchException e){
+				System.out.println("Input is invalid. Please try again.");
+				break;
+			}
 		case "3":
 			System.out.println("You selected the trip finder" );
 			break;
