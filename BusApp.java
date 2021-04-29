@@ -4,14 +4,6 @@ import java.util.Scanner;
 public class BusApp {
 	static EdgeWeightedDigraph graph;
 	static Dijkstra dijkstra;
-	public static void main(String[] args)
-	{
-		graph = new EdgeWeightedDigraph();
-		MenuScreen();
-		
-		
-		
-	}
 	
 	private static void MenuScreen()
 	{
@@ -72,6 +64,25 @@ public class BusApp {
 			break;
 		case "3":
 			System.out.println("You selected the trip finder" );
+			System.out.println("Please enter a time to check in the format hh:mm:ss :");
+			/*boolean validTime;
+			do 
+			{
+				
+			}while();
+			*/
+			String timeChoice = sc.next();
+			
+			
+			ArrayList<Trip> desiredTimes = search(timeChoice);
+			for(int i =0; i < desiredTimes.size(); i++)
+			{
+				Trip current = (desiredTimes.get(i));
+				current.printTrip();
+				System.out.println();
+			}
+			
+			
 			break;
 		case "4":
 			System.out.println("Goodbye..." );
@@ -83,6 +94,13 @@ public class BusApp {
 	}
 	
 	
-	
+	public static void main(String[] args)
+	{
+		graph = new EdgeWeightedDigraph();
+		MenuScreen();
+		
+		
+		
+	}
 	
 }
