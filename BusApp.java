@@ -20,8 +20,8 @@ public class BusApp {
 	{
 		
 		System.out.println("Welcome to the Vancouver bus app! ");
-		boolean quitLiterallyEverything = false;
-		while(!quitLiterallyEverything)
+		boolean quitEverything = false;
+		while(!quitEverything)
 		{
 		System.out.println("Please type: \n 1 - To find the shortest path between two bus stops \n 2 - To search for a bus stop by name \n 3 - To search for all trips with a given arrival time \n 'quit' - To quit the application");
 		String input = "";
