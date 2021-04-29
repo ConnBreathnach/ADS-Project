@@ -21,21 +21,14 @@ public class EdgeWeightedDigraph{
         counter = 0;
         edges = new ArrayList<DirectedEdge>();
         vertexMap = new HashMap<Integer, Integer>(8800);
-        createVertices("Inputs\\stops.txt");
+        createVertices("stops.txt");
         adjacentEdges = new ArrayList[vertexCount];
-        addEdgesFromTripId("Inputs\\stop_times.txt");
-        addEdgesFromTransfers("Inputs\\transfers.txt");
+        addEdgesFromTripId("stop_times.txt");
+        addEdgesFromTransfers("transfers.txt");
 
     }
 
-    public static void main(String[] args){
-        EdgeWeightedDigraph graph = new EdgeWeightedDigraph();
-        int startVertex = graph.vertexMap.get(2742);
-        Dijkstra dijkstra = new Dijkstra(graph, startVertex);
-        int endVertex = graph.vertexMap.get(1709);
-        double dist = dijkstra.getDistTo(endVertex);
-        System.out.println("Distance from 646 to 378 is " + dist);
-    }
+ 
     /**
      * Add edge to graph variables
      * @param edge: DirectedEdge being added to graph
