@@ -95,7 +95,10 @@ class TST{
         if (stop[position] > r.data) return search(r.right, stop, position);
         if (position == stop.length - 1) {
         	if (r.isWord) return "1";
-        	else searchEnding(r.middle, String.valueOf(stop));
+        	else {
+			searchEnding(r.middle, String.valueOf(stop));
+			return "0";
+		}
         }
         return search(r.middle, stop, position + 1);
 	}
