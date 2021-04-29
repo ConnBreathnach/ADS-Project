@@ -151,7 +151,7 @@ public class EdgeWeightedDigraph{
         int toVertex;
         DirectedEdge edge = null;
         final double DEFAULT_WEIGHT = 2;
-        transfersScanner.useDelimiter(",|\\n");
+        transfersScanner.useDelimiter(",|\\n|\\r");
         transfersScanner.nextLine();
         while(transfersScanner.hasNextLine()){
             fromId = transfersScanner.nextInt();
@@ -161,15 +161,9 @@ public class EdgeWeightedDigraph{
                 edge = new DirectedEdge(fromId, toId, DEFAULT_WEIGHT);
             }
             else if(transferType == 2){
-                double weight;
-                if(transfersScanner.hasNextInt()) {
-                    minTransferTime = transfersScanner.nextInt();
-                    weight = ((double)minTransferTime)/100;
-                }
-                else
-                {
-                    weight = DEFAULT_WEIGHT;
-                }
+                //String mint = transfersScanner.next();
+                minTransferTime = transfersScanner.nextInt();
+                double weight = ((double)minTransferTime)/100;
                 edge = new DirectedEdge(fromId, toId, weight);
             }
             addEdge(edge);
