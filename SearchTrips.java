@@ -1,15 +1,4 @@
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Scanner;
-
- public class SearchTrips {
+public class SearchTrips {
 
  	public static void printTrips(String time){
  		ArrayList<Trip> allTrips = search(time);
@@ -20,6 +9,7 @@ import java.util.Scanner;
 		}
  		for(Trip current : allTrips){
  			current.printTrip();
+ 			System.out.println();
 		}
 	}
 
@@ -29,7 +19,7 @@ import java.util.Scanner;
 
 		try 
 		{
-			File stopTimes = new File ("Inputs\\stop_times.txt");
+			File stopTimes = new File ("stop_times.txt");
 			Scanner scStopTimes = new Scanner (stopTimes);
 			ArrayList<Trip> arr = new ArrayList<Trip>();
 			DateFormat f = new SimpleDateFormat("HH:mm:ss");
@@ -95,30 +85,5 @@ import java.util.Scanner;
 		}
 		return null;
 	}		
-		
- /*public static void main(String[] args) throws FileNotFoundException, Exception {
-	 
-	ArrayList<Trip> desiredTimes=search("");
-
-	for(int i=0; i<desiredTimes.size();i++)
-	{
-		Trip current = (desiredTimes.get(i));
-		current.printTrip();
-		
-		System.out.println();
-	}
-
- }*/
  }
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
