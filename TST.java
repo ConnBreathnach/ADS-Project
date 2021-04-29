@@ -24,6 +24,9 @@ class TST{
 	}
 	public void insert () throws FileNotFoundException {
 		Scanner fileName = new Scanner (new File("stops.txt"));
+		if (fileName.hasNextLine()) {
+			fileName.nextLine();
+		}
 		while (fileName.hasNextLine()) {
 			String currentLine = fileName.nextLine();
 			String[] parts = currentLine.split(",");
