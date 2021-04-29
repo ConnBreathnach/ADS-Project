@@ -4,9 +4,9 @@
 •	Searching for a bus stop by full name or by the first few characters in the name
 
 •	Searching for all trips with a given arrival time and returning full details of all trips matching the criteria (sorted by trip ID)
-  - searching method  - finished 28/04
-  - sorting the ArrayList of trips - finished 29/04
-  - error handling - finished 29/04
+    - searching method  - finished 28/04
+    - sorting the ArrayList of trips - finished 29/04
+    - error handling - finished 29/04
 
 •	Provide front interface enabling selection between the above features or an option to exit the programme, and enabling required user input.
 
