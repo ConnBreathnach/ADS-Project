@@ -23,7 +23,7 @@ public class BusApp {
 		String input;
 		boolean chosen;
 		Scanner sc = new Scanner(System.in);
-		sc.useDelimiter("\\n|\\r");
+		sc.useDelimiter("\\n|\\r|,");
 		do 
 		{
 			input = sc.next();
@@ -52,7 +52,7 @@ public class BusApp {
 		{
 		case "1":
 			System.out.println("You selected the shortest path finder" );
-			System.out.println("Please enter your starting and ending bus stop ids, separated by a space ");
+			System.out.println("Please enter your starting and ending bus stop ids, separated by a comma (,)");
 			try {
 				int firstId = sc.nextInt();
 				int secondId = sc.nextInt();
@@ -85,6 +85,12 @@ public class BusApp {
 			}
 		case "3":
 			System.out.println("You selected the trip finder" );
+			try {
+				String stopTime = sc.next();
+				SearchTrips.printTrips(stopTime);
+			} catch (InputMismatchException e){
+				System.out.println("Input is invalid.");
+			}
 			break;
 		case "4":
 			System.out.println("Goodbye..." );
