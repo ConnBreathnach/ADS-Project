@@ -10,20 +10,32 @@ import java.util.Date;
 import java.util.Scanner;
 
  public class SearchTrips {
-	
-	static  ArrayList<Trip> search(String inputArrivalTime) throws FileNotFoundException, Exception
+
+ 	public static void printTrips(String time){
+ 		ArrayList<Trip> allTrips = search(time);
+ 		if(allTrips == null)
+		{
+			System.out.println("Problem with allTrips");
+			return;
+		}
+ 		for(Trip current : allTrips){
+ 			current.printTrip();
+		}
+	}
+
+	static ArrayList<Trip> search(String inputArrivalTime)
 	{
 		//read in stop_times.txt file
-		File stopTimes = new File ("stop_times.txt");
-		Scanner scStopTimes = new Scanner (stopTimes);
-		
 		try 
 		{
+			File stopTimes = new File ("Inputs\\stop_times.txt");
+			Scanner scStopTimes = new Scanner (stopTimes);
+			ArrayList<Trip> arr = new ArrayList<Trip>();
 			DateFormat f = new SimpleDateFormat("HH:mm:ss");
 			Date max = f.parse("23:59:59"); //max time allowed
 			Date inputTime = f.parse(inputArrivalTime); //input arrival time as Date
 
-			ArrayList<Trip> arr = new ArrayList<Trip>(); //array of Trip objects that have a matching arrival time to the input
+			 //array of Trip objects that have a matching arrival time to the input
 
 
 			if(inputArrivalTime.charAt(0) == '0')
@@ -52,7 +64,7 @@ import java.util.Scanner;
 						t.id(Integer.parseInt(array[0]));
 						t.arrival(array[1]);
 						t.departure(array[2]);
-						t.stop(Integer.parseInt(array[3])); 
+						t.stop(Integer.parseInt(array[3]));
 						t.sequence(Integer.parseInt(array[4]));
 						t.headsign(array[5]);
 						t.pickup(Integer.parseInt(array[6]));
@@ -70,14 +82,17 @@ import java.util.Scanner;
 			{
 				System.out.print("There are no trips with the given arrival time of " + inputArrivalTime + ".");
 			}
+			Collections.sort(arr, new TripComparator());	//sort the trip IDs
+			return arr;
+		}
+		catch(FileNotFoundException e){
+			System.out.println("File not found");
 		}
 		catch(ParseException e)
 		{
 			System.out.println("Invalid arrival time has been entered. Please enter your desired arrival time using numbers in hh:mm:ss format.");
 		}
-		
-		Collections.sort(arr, new TripComparator());	//sort the trip IDs
-		return arr;
+		return null;
 	}		
 		
  /*public static void main(String[] args) throws FileNotFoundException, Exception {

@@ -21,10 +21,10 @@ public class EdgeWeightedDigraph{
         counter = 0;
         edges = new ArrayList<DirectedEdge>();
         vertexMap = new HashMap<Integer, Integer>(8800);
-        createVertices("Inputs/stops.txt");
+        createVertices("Inputs\\stops.txt");
         adjacentEdges = new ArrayList[vertexCount];
-        addEdgesFromTripId("Inputs/stop_times.txt");
-        addEdgesFromTransfers("Inputs/transfers.txt");
+        addEdgesFromTripId("Inputs\\stop_times.txt");
+        addEdgesFromTransfers("Inputs\\transfers.txt");
 
     }
 
