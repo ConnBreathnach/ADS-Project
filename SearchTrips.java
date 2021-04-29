@@ -26,6 +26,7 @@ import java.util.Scanner;
 	static ArrayList<Trip> search(String inputArrivalTime)
 	{
 		//read in stop_times.txt file
+
 		try 
 		{
 			File stopTimes = new File ("Inputs\\stop_times.txt");
@@ -35,7 +36,7 @@ import java.util.Scanner;
 			Date max = f.parse("23:59:59"); //max time allowed
 			Date inputTime = f.parse(inputArrivalTime); //input arrival time as Date
 
-			 //array of Trip objects that have a matching arrival time to the input
+
 
 
 			if(inputArrivalTime.charAt(0) == '0')
