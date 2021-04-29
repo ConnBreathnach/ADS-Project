@@ -22,20 +22,25 @@ class TST{
 	public TST () {
 		root = new TSTNode();
 	}
-	public void insert () throws FileNotFoundException {
-		Scanner fileName = new Scanner (new File("stops.txt"));
-		if (fileName.hasNextLine()) {
-			fileName.nextLine();
+	public void insert () {
+		try {
+			Scanner fileName = new Scanner(new File("Inputs\\stops.txt"));
+			if (fileName.hasNextLine()) {
+				fileName.nextLine();
+			}
+			while (fileName.hasNextLine()) {
+				String currentLine = fileName.nextLine();
+				String[] parts = currentLine.split(",");
+				String currentStop = parts[2];
+				currentStop = formatString(currentStop);
+				currentStop = currentStop.trim();
+				insert(root, currentStop.toCharArray(), 0);
+			}
+			fileName.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found for TST");
+			e.printStackTrace();
 		}
-		while (fileName.hasNextLine()) {
-			String currentLine = fileName.nextLine();
-			String[] parts = currentLine.split(",");
-			String currentStop = parts[2];
-			currentStop = formatString(currentStop);
-			currentStop = currentStop.trim();
-			insert(root, currentStop.toCharArray(), 0);
-		}
-		fileName.close();
 	}
 	public TSTNode insert (TSTNode r, char [] stop, int position) {
 		if (r == null) {
@@ -97,10 +102,10 @@ class TST{
         if (stop[position] < r.data) return search(r.left, stop, position);
         if (stop[position] > r.data) return search(r.right, stop, position);
         if (position == stop.length - 1) {
-        	if (r.isWord) return "1";
+        	if (r.isWord) return "";
         	else {
 			searchEnding(r.middle, String.valueOf(stop));
-			return "0";
+			return "";
 		}
         }
         return search(r.middle, stop, position + 1);
