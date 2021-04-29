@@ -5,4 +5,4 @@ Link to project repo: https://github.com/ConnBreathnach/ADS-Project
 Ailbhe McEvoy -  Searching for all trips that match a given arrival time and retruning full trip details of each trip sorted (by trip ID)   
 Conn Breathnach - Implementing Dijkstra's algorithm to find the shortest path between two bus stops  
 Dónal Heelan -  Front end menu implementation and design document  
-Melissa Mazura - Birthday Girl
+Melissa Mazura - Searching for bus stop by name using TST  
