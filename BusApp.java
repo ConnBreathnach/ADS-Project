@@ -69,7 +69,7 @@ public class BusApp {
 					
 					else if(sc.hasNext("quit"))
 					{
-						quitLiterallyEverything=true;
+						quitEverything=true;
 						break;
 						
 					}
@@ -118,7 +118,7 @@ public class BusApp {
 				
 				else if(sc.hasNext("quit"))
 				{
-					quitLiterallyEverything=true;
+					quitEverything=true;
 					break;
 					
 				}
@@ -149,7 +149,7 @@ public class BusApp {
 				
 				else if(sc.hasNext("quit"))
 				{
-					quitLiterallyEverything=true;
+					quitEverything=true;
 					break;
 					
 				}
