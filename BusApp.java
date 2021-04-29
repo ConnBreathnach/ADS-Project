@@ -164,7 +164,7 @@ public class BusApp {
 			break;
 		case "quit":
 			System.out.println("Goodbye..." );
-			quitLiterallyEverything=true;
+			quitEverything=true;
 			break;
 		default:
 			System.out.println("Error");
