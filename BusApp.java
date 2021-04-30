@@ -70,6 +70,7 @@ public class BusApp {
 					
 					else if(sc.hasNext("quit"))
 					{
+						System.out.println("Goodbye..." );
 						quitEverything=true;
 						break;
 						
@@ -120,6 +121,7 @@ public class BusApp {
 				
 				else if(sc.hasNext("quit"))
 				{
+					System.out.println("Goodbye..." );
 					quitEverything=true;
 					break;
 					
@@ -152,6 +154,7 @@ public class BusApp {
 				
 				else if(sc.hasNext("quit"))
 				{
+					System.out.println("Goodbye..." );
 					quitEverything=true;
 					break;
 					
