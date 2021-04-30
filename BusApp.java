@@ -42,6 +42,7 @@ public class BusApp {
 							
 			else {
 						System.out.println("Please only enter an integer value, 1, 2, 3 or 'quit'");
+						sc.next();
 						chosen = true;
 			
 				 }
@@ -88,6 +89,7 @@ public class BusApp {
 				}
 				catch (InputMismatchException e)
 				{
+					sc.nextLine();
 					System.out.println("The input you gave is not valid.");
 				}
 			
