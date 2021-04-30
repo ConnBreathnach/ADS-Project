@@ -2,6 +2,8 @@
 •	Shortest path between 2 bus stops -- DONE 25/04
 
 •	Searching for a bus stop by full name or by the first few characters in the name
+    - TST implementation (initialisation) finished 28/04
+    - search method finished 28/04
 
 •	Searching for all trips with a given arrival time and returning full details of all trips matching the criteria (sorted by trip ID)
     - searching method  - finished 28/04
@@ -14,4 +16,3 @@
 
 Error checking
 
-TST implementation -- 28/04
