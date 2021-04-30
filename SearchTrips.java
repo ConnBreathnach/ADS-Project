@@ -1,4 +1,14 @@
-public class SearchTrips {
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Scanner;
+
+ public class SearchTrips {
 
  	public static void printTrips(String time){
  		ArrayList<Trip> allTrips = search(time);
@@ -31,11 +41,11 @@ public class SearchTrips {
 
 			if(inputArrivalTime.charAt(0) == '0')
 			{
-				System.out.print("Do not start your desired arrival time with '0'.");
+				System.out.println("Do not start your desired arrival time with '0'.");
 			}
-			if((inputTime.compareTo(max)==1)||(inputArrivalTime.charAt(0)=='-')) 
+			else if((inputTime.compareTo(max)==1)||(inputArrivalTime.charAt(0)=='-')) 
 			{
-				System.out.print("Invalid arrival time has been entered.'23:59:59' is the maximum time input allowed. Please enter your desired arrival time in hh:mm:ss format");
+				System.out.println("Invalid arrival time has been entered.'23:59:59' is the maximum time input allowed. Please enter your desired arrival time in hh:mm:ss format");
 			}
 
 			String input = " "+inputArrivalTime;//allow for space before times in the txt file
@@ -69,9 +79,9 @@ public class SearchTrips {
 			}
 
 			scStopTimes.close();
-			if(arr.size()==0)
+			if(arr.size()==0 && (inputArrivalTime.charAt(0) != '0')&&(inputTime.compareTo(max)!=1)&&(inputArrivalTime.charAt(0)!='-'))
 			{
-				System.out.print("There are no trips with the given arrival time of " + inputArrivalTime + ".");
+				System.out.println("There are no trips with the given arrival time of " + inputArrivalTime + ".");
 			}
 			Collections.sort(arr, new TripComparator());	//sort the trip IDs
 			return arr;
@@ -86,4 +96,4 @@ public class SearchTrips {
 		return null;
 	}		
  }
-	
+		
