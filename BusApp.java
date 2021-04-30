@@ -130,6 +130,7 @@ public class BusApp {
 				System.out.println(tree.search(stopName));
 			}
 			catch(InputMismatchException e){
+				sc.nextLine();
 				System.out.println("Input is invalid. Please try again.");
 			}
 				}
@@ -160,6 +161,7 @@ public class BusApp {
 				String stopTime = sc.next();
 				SearchTrips.printTrips(stopTime);
 			} catch (InputMismatchException e){
+				sc.nextLine();
 				System.out.println("Input is invalid.");
 			}
 			}
